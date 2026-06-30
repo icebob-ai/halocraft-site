@@ -31,17 +31,8 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 20px 40px;
     }
-    .topbar-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .topbar-logo-dot {
-      width: 34px; height: 34px; border-radius: 50%;
-      border: 1.5px solid #22d3ee;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 18px rgba(34,211,238,.45);
-    }
-    .topbar-logo-dot span {
-      width: 9px; height: 9px; border-radius: 50%;
-      background: #22d3ee; box-shadow: 0 0 10px #22d3ee;
-    }
+    .topbar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .topbar-logo-img { height: 38px; width: auto; }
     .topbar-brand {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700; font-size: 21px; letter-spacing: .06em;
@@ -240,7 +231,7 @@
   <header class="topbar">
     <div class="topbar-inner">
       <a href="#" class="topbar-logo">
-        <div class="topbar-logo-dot"><span></span></div>
+        <img src="assets/logo.png" alt="HaloCraft logo" class="topbar-logo-img">
         <span class="topbar-brand">HaloCraft</span>
       </a>
       <nav class="topbar-nav">
