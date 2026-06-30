@@ -4,429 +4,340 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HaloCraft — 3D Nyomtatott LED Wall Art</title>
-  <meta name="description" content="Egyedi, kézműves 3D nyomtatott fali dekorációk LED háttérvilágítással. Autó sziluettek, pop-kultúra, egyedi tervek.">
+  <meta name="description" content="Kézműves 3D nyomtatott autó-sziluettek valódi LED háttérvilágítással. Minden darab a saját műhelyünkben készül — rétegről rétegre, kézzel.">
+  <meta property="og:title" content="HaloCraft — 3D Nyomtatott LED Wall Art">
+  <meta property="og:description" content="Kézműves 3D nyomtatott autó-sziluettek valódi LED háttérvilágítással.">
+  <meta property="og:image" content="assets/porsche-blue.jpg">
+  <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #07080c; color: #ECECF2; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
 
-    :root {
-      --glow: #22d3ee;
-      --glow-warm: #67e8f9;
-      --bg: #0a0a0f;
-      --surface: #12121a;
-      --text: #e4e4ed;
-      --text-dim: #8888a0;
+    .wrap { max-width: 1200px; margin: 0 auto; padding-left: 40px; padding-right: 40px; }
+
+    /* topbar */
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(14px); background: rgba(7,8,12,.72);
+      border-bottom: 1px solid #14161f;
+    }
+    .topbar-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+    }
+    .topbar-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .topbar-logo-dot {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1.5px solid #22d3ee;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 18px rgba(34,211,238,.45);
+    }
+    .topbar-logo-dot span {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: #22d3ee; box-shadow: 0 0 10px #22d3ee;
+    }
+    .topbar-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 21px; letter-spacing: .06em;
+    }
+    .topbar-nav { display: flex; align-items: center; gap: 34px; }
+    .topbar-nav a { text-decoration: none; font-size: 14px; color: #9a9aae; letter-spacing: .02em; }
+    .topbar-nav a:hover { color: #ECECF2; }
+    .topbar-cta {
+      text-decoration: none; font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600; font-size: 14px; letter-spacing: .03em;
+      color: #06070b; background: #22d3ee;
+      padding: 10px 20px; border-radius: 999px;
+      box-shadow: 0 0 22px rgba(34,211,238,.4);
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    #wireframe-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
+    /* hero */
+    .hero { position: relative; padding: 96px 40px 44px; text-align: center; max-width: 1200px; margin: 0 auto; }
+    .hero-glow {
+      position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+      width: 720px; height: 520px;
+      background: radial-gradient(circle, rgba(34,211,238,.13) 0%, transparent 68%);
       pointer-events: none;
     }
+    .hero-kicker {
+      position: relative; font-size: 13px; letter-spacing: .34em;
+      text-transform: uppercase; color: #22d3ee;
+      margin-bottom: 26px; font-weight: 500;
+    }
+    .hero h1 {
+      position: relative; font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 84px; line-height: 1.0;
+      letter-spacing: -.025em; margin-bottom: 26px;
+    }
+    .hero h1 .glow {
+      color: #22d3ee; text-shadow: 0 0 38px rgba(34,211,238,.55);
+    }
+    .hero-sub {
+      position: relative; max-width: 580px; margin: 0 auto 40px;
+      font-size: 18px; line-height: 1.7; color: #9a9aae; font-weight: 300;
+    }
+    .hero-buttons {
+      position: relative; display: flex; gap: 16px; justify-content: center;
+    }
+    .btn-primary {
+      text-decoration: none; font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600; font-size: 15px;
+      color: #06070b; background: #22d3ee;
+      padding: 15px 32px; border-radius: 999px;
+      box-shadow: 0 8px 34px rgba(34,211,238,.4);
+    }
+    .btn-secondary {
+      text-decoration: none; font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600; font-size: 15px;
+      color: #ECECF2; padding: 15px 32px;
+      border-radius: 999px; border: 1px solid #2a2d3a;
+    }
+    .btn-secondary:hover { border-color: #3a3d4a; }
 
-    .bg-glow {
-      position: fixed;
-      top: -40%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, transparent 70%);
+    /* hero image */
+    .hero-image {
+      position: relative; max-width: 1320px; margin: 0 auto;
+    }
+    .hero-image-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 55% 50% at 50% 55%, rgba(34,211,238,.2), transparent 70%);
       pointer-events: none;
-      z-index: 0;
+    }
+    .hero-image img {
+      width: 100%; height: 560px; object-fit: cover; object-position: center 42%;
+    }
+    .hero-image-fade {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 160px;
+      background: linear-gradient(transparent, #07080c);
     }
 
-    .bg-glow-bottom {
-      position: fixed;
-      bottom: -50%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 1000px;
-      height: 1000px;
-      background: radial-gradient(circle, rgba(103, 232, 249, 0.05) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+    /* trust row */
+    .trust-row {
+      max-width: 1200px; margin: 0 auto; padding: 18px 40px 0;
+      display: flex; gap: 18px;
+    }
+    .trust-card {
+      flex: 1; padding: 22px 24px;
+      border: 1px solid #191b24; border-radius: 14px; background: #0c0d13;
+    }
+    .trust-label {
+      font-size: 12px; letter-spacing: .16em;
+      text-transform: uppercase; color: #22d3ee; margin-bottom: 8px;
+    }
+    .trust-text { font-size: 16px; color: #ECECF2; }
+
+    /* gallery */
+    .gallery {
+      max-width: 1200px; margin: 0 auto; padding: 90px 40px 30px;
+      scroll-margin-top: 90px;
+    }
+    .gallery-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 36px;
+    }
+    .gallery-header h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 40px; letter-spacing: -.01em;
+    }
+    .gallery-header span { font-size: 14px; color: #7a7a8c; letter-spacing: .02em; }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+    }
+    .gallery-card {
+      text-decoration: none; color: inherit;
+      background: #0c0d13; border: 1px solid #191b24;
+      border-radius: 16px; overflow: hidden; display: block;
+      transition: border-color .2s;
+    }
+    .gallery-card:hover { border-color: #22d3ee40; }
+    .gallery-card img {
+      width: 100%; aspect-ratio: 1; object-fit: cover;
+    }
+    .gallery-card-info { padding: 20px 22px; }
+    .gallery-card-info h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600; font-size: 19px; margin-bottom: 6px;
+    }
+    .gallery-card-meta {
+      display: flex; align-items: center; gap: 8px;
+      color: #9a9aae; font-size: 13px;
+    }
+    .color-dot {
+      width: 9px; height: 9px; border-radius: 50%;
+    }
+    .color-red { background: #ff3b3b; box-shadow: 0 0 9px #ff3b3b; }
+    .color-cyan { background: #22d3ee; box-shadow: 0 0 9px #22d3ee; }
+
+    /* custom strip */
+    .custom-strip {
+      max-width: 1200px; margin: 0 auto; padding: 54px 40px 0;
+      scroll-margin-top: 90px;
+    }
+    .custom-strip-inner {
+      padding: 50px; border-radius: 18px;
+      background: linear-gradient(120deg, #0c1418, #0a0b10);
+      border: 1px solid #14323a;
+      display: flex; align-items: center; justify-content: space-between; gap: 30px;
+    }
+    .custom-strip h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 30px; margin-bottom: 8px;
+    }
+    .custom-strip p {
+      color: #9a9aae; font-size: 16px; line-height: 1.6; max-width: 540px;
+    }
+    .custom-strip .btn-primary { white-space: nowrap; box-shadow: 0 8px 30px rgba(34,211,238,.35); }
+
+    /* footer */
+    .site-footer {
+      max-width: 1200px; margin: 70px auto 0; padding: 30px 40px;
+      border-top: 1px solid #14161f;
+      display: flex; align-items: center; justify-content: space-between;
+      color: #6a6a7e; font-size: 13px;
+    }
+    .site-footer .label {
+      letter-spacing: .18em; text-transform: uppercase;
     }
 
-    main {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
-      text-align: center;
+    /* mobile */
+    @media (max-width: 900px) {
+      .topbar-inner { padding: 16px 20px; }
+      .topbar-nav a:not(.topbar-cta) { display: none; }
+      .hero { padding: 60px 20px 30px; }
+      .hero h1 { font-size: 48px; }
+      .hero-sub { font-size: 16px; margin-bottom: 30px; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .hero-image img { height: 320px; }
+      .trust-row { flex-direction: column; padding: 18px 20px 0; }
+      .gallery { padding: 60px 20px 30px; }
+      .gallery-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .gallery-header h2 { font-size: 30px; }
+      .gallery-grid { grid-template-columns: 1fr; gap: 16px; }
+      .custom-strip { padding: 40px 20px 0; }
+      .custom-strip-inner {
+        flex-direction: column; text-align: center;
+        padding: 36px 24px; gap: 20px;
+      }
+      .custom-strip h3 { font-size: 24px; }
+      .site-footer { padding: 24px 20px; flex-direction: column; gap: 8px; }
     }
-
-    .logo-section {
-      margin-bottom: 3rem;
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 36px; }
+      .gallery-card img { aspect-ratio: 4/3; }
     }
-
-    .logo-icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 1.5rem;
-      position: relative;
-    }
-
-    .logo-icon svg {
-      width: 100%;
-      height: 100%;
-      filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.6))
-             drop-shadow(0 0 40px rgba(34, 211, 238, 0.3));
-    }
-
-    .brand-name {
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 900;
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
-      letter-spacing: 0.15em;
-      background: linear-gradient(135deg, #e4e4ed 0%, var(--glow-warm) 50%, var(--glow) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: none;
-      filter: drop-shadow(0 0 30px rgba(34, 211, 238, 0.3));
-    }
-
-    .tagline {
-      font-size: clamp(0.9rem, 2.5vw, 1.15rem);
-      color: var(--text-dim);
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      margin-top: 0.75rem;
-      font-weight: 300;
-    }
-
-    .divider {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--glow), transparent);
-      margin: 2.5rem auto;
-      border-radius: 2px;
-      box-shadow: 0 0 12px rgba(34, 211, 238, 0.5);
-    }
-
-    .description {
-      max-width: 520px;
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--text-dim);
-      font-weight: 300;
-    }
-
-    .description strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .features {
-      display: flex;
-      gap: 2rem;
-      margin: 3rem 0;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .feature {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      color: var(--text-dim);
-      font-size: 0.9rem;
-    }
-
-    .feature-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--glow);
-      box-shadow: 0 0 8px rgba(34, 211, 238, 0.6);
-      flex-shrink: 0;
-    }
-
-    .cta-section {
-      margin-top: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.9rem 2.2rem;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #fff;
-      background: linear-gradient(135deg, var(--glow) 0%, #0891b2 100%);
-      border: none;
-      border-radius: 50px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 25px rgba(34, 211, 238, 0.35),
-                  0 0 0 1px rgba(34, 211, 238, 0.2);
-    }
-
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 35px rgba(34, 211, 238, 0.5),
-                  0 0 0 1px rgba(34, 211, 238, 0.4);
-    }
-
-    .cta-button svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .coming-soon {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      opacity: 0.6;
-    }
-
-    footer {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 2rem;
-      color: var(--text-dim);
-      font-size: 0.75rem;
-      opacity: 0.4;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    .logo-icon { animation: float 4s ease-in-out infinite; }
-
-    @keyframes pulse-glow {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
-    }
-
-    .divider { animation: pulse-glow 3s ease-in-out infinite; }
   </style>
 </head>
 <body>
-  <canvas id="wireframe-bg"></canvas>
-  <div class="bg-glow"></div>
-  <div class="bg-glow-bottom"></div>
 
-  <main>
-    <div class="logo-section">
-      <div class="logo-icon">
-        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="35" stroke="url(#halo-grad)" stroke-width="2" opacity="0.3"/>
-          <circle cx="50" cy="50" r="25" stroke="url(#halo-grad)" stroke-width="1.5" opacity="0.5"/>
-          <path d="M50 20 L55 40 L75 40 L59 52 L65 72 L50 60 L35 72 L41 52 L25 40 L45 40 Z" fill="url(#halo-grad)" opacity="0.9"/>
-          <defs>
-            <linearGradient id="halo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#67e8f9"/>
-              <stop offset="100%" stop-color="#22d3ee"/>
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-      <h1 class="brand-name">HaloCraft</h1>
-      <p class="tagline">3D nyomtatott LED wall art</p>
-    </div>
-
-    <div class="divider"></div>
-
-    <p class="description">
-      <strong>Egyedi, kézműves fali dekorációk</strong> LED háttérvilágítással.
-      Autó sziluettek, ikonikus formák, atmoszférikus fények —
-      minden darab saját műhelyünkben készül, rétegről rétegre.
-    </p>
-
-    <div class="features">
-      <div class="feature">
-        <div class="feature-dot"></div>
-        <span>Kézműves 3D nyomtatás</span>
-      </div>
-      <div class="feature">
-        <div class="feature-dot"></div>
-        <span>LED háttérvilágítás</span>
-      </div>
-      <div class="feature">
-        <div class="feature-dot"></div>
-        <span>Egyedi tervezés</span>
-      </div>
-    </div>
-
-    <div class="cta-section">
-      <a href="https://www.meska.hu/shop/HaloCraft" target="_blank" rel="noopener" class="cta-button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-        </svg>
-        Meska bolt
+  <!-- topbar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#" class="topbar-logo">
+        <div class="topbar-logo-dot"><span></span></div>
+        <span class="topbar-brand">HaloCraft</span>
       </a>
-      <p class="coming-soon">Webshop hamarosan</p>
+      <nav class="topbar-nav">
+        <a href="#modellek">Modellek</a>
+        <a href="#egyedi">Egyedi rendelés</a>
+        <a href="https://www.meska.hu/shop/HaloCraft" target="_blank" rel="noopener" class="topbar-cta">Meska bolt</a>
+      </nav>
     </div>
-  </main>
+  </header>
 
-  <footer>
-    &copy; 2026 HaloCraft
+  <!-- hero -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <p class="hero-kicker">Kézműves · LED háttérvilágítás</p>
+    <h1>Műalkotás,<br>ami <span class="glow">világít.</span></h1>
+    <p class="hero-sub">3D nyomtatott autó-sziluettek valódi LED háttérvilágítással. Minden darab a saját műhelyünkben készül — rétegről rétegre, kézzel.</p>
+    <div class="hero-buttons">
+      <a href="https://www.meska.hu/shop/HaloCraft" target="_blank" rel="noopener" class="btn-primary">Vásárlás a Meskán</a>
+      <a href="#egyedi" class="btn-secondary">Egyedi rendelés</a>
+    </div>
+  </section>
+
+  <!-- hero image -->
+  <div class="hero-image">
+    <div class="hero-image-glow"></div>
+    <img src="assets/porsche-blue.jpg" alt="Porsche 911 GT3 LED wall art">
+    <div class="hero-image-fade"></div>
+  </div>
+
+  <!-- trust row -->
+  <div class="trust-row">
+    <div class="trust-card">
+      <div class="trust-label">Kézműves</div>
+      <div class="trust-text">3D rétegnyomtatás, saját műhelyben</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-label">USB 5V</div>
+      <div class="trust-text">Egyszerű bekötés, bárhol a falon</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-label">Egyedi méret</div>
+      <div class="trust-text">~85 × 29 cm, kérésre testreszabva</div>
+    </div>
+  </div>
+
+  <!-- gallery -->
+  <section id="modellek" class="gallery">
+    <div class="gallery-header">
+      <h2>A kollekció</h2>
+      <span>Mind 5V USB · hangulatvilágítás</span>
+    </div>
+    <div class="gallery-grid">
+      <a href="https://www.meska.hu/shop/HaloCraft" target="_blank" rel="noopener" class="gallery-card">
+        <img src="assets/mustang-room.png" alt="Ford Mustang GT">
+        <div class="gallery-card-info">
+          <h3>Ford Mustang GT</h3>
+          <div class="gallery-card-meta">
+            <span class="color-dot color-red"></span> Piros · 87 × 29 cm
+          </div>
+        </div>
+      </a>
+      <a href="https://www.meska.hu/shop/HaloCraft" target="_blank" rel="noopener" class="gallery-card">
+        <img src="assets/mercedes-room.png" alt="Mercedes-AMG GT3">
+        <div class="gallery-card-info">
+          <h3>Mercedes-AMG GT3</h3>
+          <div class="gallery-card-meta">
+            <span class="color-dot color-cyan"></span> Iced Blue · 87 × 29 cm
+          </div>
+        </div>
+      </a>
+      <a href="https://www.meska.hu/shop/HaloCraft" target="_blank" rel="noopener" class="gallery-card">
+        <img src="assets/porsche-room.png" alt="Porsche 911 GT3">
+        <div class="gallery-card-info">
+          <h3>Porsche 911 GT3 992</h3>
+          <div class="gallery-card-meta">
+            <span class="color-dot color-cyan"></span> Iced Blue · 84 × 29 cm
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- custom order -->
+  <section id="egyedi" class="custom-strip">
+    <div class="custom-strip-inner">
+      <div>
+        <h3>Nem találod a kocsidat?</h3>
+        <p>Küldd el az álmaid autóját — bármilyen sziluettet legyártunk egyedi méretben és LED színben.</p>
+      </div>
+      <a href="https://www.meska.hu/shop/HaloCraft" target="_blank" rel="noopener" class="btn-primary">Egyedi rendelés</a>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer class="site-footer">
+    <span>&copy; 2026 HaloCraft</span>
+    <span class="label">3D printed silhouette</span>
   </footer>
 
-  <script>
-    (function() {
-      const canvas = document.getElementById('wireframe-bg');
-      const ctx = canvas.getContext('2d');
-      let w, h, cols, rows;
-      const CELL = 60;
-      const LINE_COLOR = 'rgba(34, 211, 238, 0.04)';
-      const NODE_COLOR = 'rgba(34, 211, 238, 0.06)';
-
-      function resize() {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-        cols = Math.ceil(w / CELL) + 1;
-        rows = Math.ceil(h / CELL) + 1;
-      }
-
-      window.addEventListener('resize', resize);
-      resize();
-
-      const particles = [];
-      const PARTICLE_COUNT = 12;
-
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        particles.push(createParticle());
-      }
-
-      function createParticle() {
-        const horizontal = Math.random() > 0.5;
-        const gridPos = Math.floor(Math.random() * (horizontal ? rows : cols));
-        return {
-          horizontal,
-          gridPos,
-          t: Math.random() * (horizontal ? w : h),
-          speed: 0.15 + Math.random() * 0.35,
-          size: 1.5 + Math.random() * 2,
-          alpha: 0.2 + Math.random() * 0.4,
-          hue: Math.random() > 0.5 ? '103, 232, 249' : '34, 211, 238',
-          glowSize: 15 + Math.random() * 25,
-          pulsePhase: Math.random() * Math.PI * 2,
-          pulseSpeed: 0.005 + Math.random() * 0.01
-        };
-      }
-
-      function drawGrid() {
-        ctx.strokeStyle = LINE_COLOR;
-        ctx.lineWidth = 1;
-
-        ctx.beginPath();
-        for (let i = 0; i < cols; i++) {
-          const x = i * CELL;
-          ctx.moveTo(x, 0);
-          ctx.lineTo(x, h);
-        }
-        for (let j = 0; j < rows; j++) {
-          const y = j * CELL;
-          ctx.moveTo(0, y);
-          ctx.lineTo(w, y);
-        }
-        ctx.stroke();
-
-        ctx.fillStyle = NODE_COLOR;
-        for (let i = 0; i < cols; i++) {
-          for (let j = 0; j < rows; j++) {
-            ctx.beginPath();
-            ctx.arc(i * CELL, j * CELL, 1.5, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        }
-      }
-
-      function drawParticles(time) {
-        for (const p of particles) {
-          const pulse = Math.sin(time * p.pulseSpeed + p.pulsePhase) * 0.3 + 0.7;
-          const alpha = p.alpha * pulse;
-          const maxLen = p.horizontal ? w : h;
-
-          p.t += p.speed;
-          if (p.t > maxLen + p.glowSize * 2) {
-            p.t = -p.glowSize * 2;
-            p.gridPos = Math.floor(Math.random() * (p.horizontal ? rows : cols));
-          }
-
-          const x = p.horizontal ? p.t : p.gridPos * CELL;
-          const y = p.horizontal ? p.gridPos * CELL : p.t;
-
-          const grad = ctx.createRadialGradient(x, y, 0, x, y, p.glowSize);
-          grad.addColorStop(0, `rgba(${p.hue}, ${alpha})`);
-          grad.addColorStop(0.4, `rgba(${p.hue}, ${alpha * 0.3})`);
-          grad.addColorStop(1, `rgba(${p.hue}, 0)`);
-          ctx.fillStyle = grad;
-          ctx.beginPath();
-          ctx.arc(x, y, p.glowSize, 0, Math.PI * 2);
-          ctx.fill();
-
-          ctx.fillStyle = `rgba(${p.hue}, ${Math.min(alpha * 2, 1)})`;
-          ctx.beginPath();
-          ctx.arc(x, y, p.size, 0, Math.PI * 2);
-          ctx.fill();
-
-          const trailLen = 40;
-          const trailGrad = p.horizontal
-            ? ctx.createLinearGradient(x - trailLen, y, x, y)
-            : ctx.createLinearGradient(x, y - trailLen, x, y);
-          trailGrad.addColorStop(0, `rgba(${p.hue}, 0)`);
-          trailGrad.addColorStop(1, `rgba(${p.hue}, ${alpha * 0.5})`);
-          ctx.strokeStyle = trailGrad;
-          ctx.lineWidth = p.size * 0.8;
-          ctx.beginPath();
-          if (p.horizontal) {
-            ctx.moveTo(x - trailLen, y);
-            ctx.lineTo(x, y);
-          } else {
-            ctx.moveTo(x, y - trailLen);
-            ctx.lineTo(x, y);
-          }
-          ctx.stroke();
-        }
-      }
-
-      let frame = 0;
-      function animate() {
-        frame++;
-        ctx.clearRect(0, 0, w, h);
-        drawGrid();
-        drawParticles(frame);
-        requestAnimationFrame(animate);
-      }
-
-      animate();
-    })();
-  </script>
 </body>
 </html>
